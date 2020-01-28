@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Mastonet.Tests
+namespace Pleronet.Tests
 {
     public class AccountTests : MastodonClientTests
     {
@@ -15,7 +15,7 @@ namespace Mastonet.Tests
         {
             var client = GetTestClient();
 
-            var account = await client.GetAccount(1);
+            var account = await client.GetAccount("1");
 
             Assert.NotNull(account.ProfileUrl);
             Assert.NotNull(account.UserName);
@@ -39,7 +39,7 @@ namespace Mastonet.Tests
         {
             var client = GetTestClient();
 
-            var relationships = await client.GetAccountRelationships(1);
+            var relationships = await client.GetAccountRelationships("1");
 
             Assert.NotNull(relationships);
             Assert.Single(relationships);

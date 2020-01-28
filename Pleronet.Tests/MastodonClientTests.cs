@@ -1,5 +1,5 @@
-using Mastonet;
-using Mastonet.Entities;
+using Pleronet;
+using Pleronet.Entities;
 using System;
 using System.Linq;
 using System.Text;
@@ -55,7 +55,7 @@ namespace _InitTest
 
 
 
-namespace Mastonet.Tests
+namespace Pleronet.Tests
 {
     public partial class MastodonClientTests
     {

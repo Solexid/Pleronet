@@ -338,7 +338,7 @@ namespace Pleronet
         /// </summary>
         /// <param name="notificationId"></param>
         /// <returns>Returns the Notification</returns>
-        public Task<Notification> GetNotification(long notificationId)
+        public Task<Notification> GetNotification(string notificationId)
         {
             return Get<Notification>($"/api/v1/notifications/{notificationId}");
         }
@@ -357,7 +357,7 @@ namespace Pleronet
         /// </summary>
         /// <param name="notificationId"></param>
         /// <returns></returns>
-        public Task DismissNotification(long notificationId)
+        public Task DismissNotification(string notificationId)
         {
             var data = new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("id", notificationId.ToString()) };
             return Post("/api/v1/notifications/dismiss", data);

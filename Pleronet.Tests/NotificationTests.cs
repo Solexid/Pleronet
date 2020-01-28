@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Mastonet.Tests
+namespace Pleronet.Tests
 {
     public class NotificationTests : MastodonClientTests
     {
@@ -36,11 +36,11 @@ namespace Mastonet.Tests
 
             // Get notif
             var notifications = await testClient.GetNotifications();
-            var notifId = notifications.First(n => n.Account.Id == 11).Id;
+            var notifId = notifications.First(n => n.Account.Id == "11").Id;
 
             var notification = await testClient.GetNotification(notifId);
             Assert.NotNull(notification);
-            Assert.Equal(11, notification.Account.Id);
+            Assert.Equal("11", notification.Account.Id);
         }
 
         [Fact]

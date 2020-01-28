@@ -156,7 +156,7 @@ namespace Pleronet
         /// </summary>
         /// <param name="notificationId"></param>
         /// <returns>Returns the Notification</returns>
-        Task<Notification> GetNotification(long notificationId);
+        Task<Notification> GetNotification(string notificationId);
 
         /// <summary>
         /// Deletes all notifications from the Mastodon server for the authenticated user
@@ -169,7 +169,7 @@ namespace Pleronet
         /// </summary>
         /// <param name="notificationId"></param>
         /// <returns></returns>
-        Task DismissNotification(long notificationId);
+        Task DismissNotification(string notificationId);
 
         /// <summary>
         /// Fetching a user's reports

@@ -62,7 +62,7 @@ public Task<Attachment> UploadMedia(MediaDefinition media);
 ```cs
 public Task<MastodonList<Notification>> GetNotifications(ArrayOptions options);
 
-public Task<Notification> GetNotification(long notificationId);
+public Task<Notification> GetNotification(string notificationId);
 
 public Task ClearNotifications();
 ```

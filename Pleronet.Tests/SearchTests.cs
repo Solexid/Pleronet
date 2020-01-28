@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace Mastonet.Tests
+namespace Pleronet.Tests
 {
     public class SearchTests : MastodonClientTests
     {

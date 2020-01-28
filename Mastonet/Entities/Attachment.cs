@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mastonet.Entities
+namespace Pleronet.Entities
 {
     public class Attachment
     {

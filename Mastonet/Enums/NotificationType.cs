@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Mastonet
+namespace Pleronet
 {
     [Flags]
     public enum NotificationType

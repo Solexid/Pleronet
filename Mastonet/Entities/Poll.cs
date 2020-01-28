@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Mastonet.Entities
+namespace Pleronet.Entities
 {
     public class Poll
     {

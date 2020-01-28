@@ -1,9 +1,9 @@
-﻿using Mastonet.Entities;
+﻿using Pleronet.Entities;
 using Newtonsoft.Json;
 using System;
 using System.Threading.Tasks;
 
-namespace Mastonet
+namespace Pleronet
 {
     public abstract class TimelineStreaming
     {

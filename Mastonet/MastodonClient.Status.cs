@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Mastonet.Entities;
+using Pleronet.Entities;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Collections;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.IO;
 
 
-namespace Mastonet
+namespace Pleronet
 {
     partial class MastodonClient
     {

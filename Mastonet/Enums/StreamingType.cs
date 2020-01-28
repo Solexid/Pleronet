@@ -1,4 +1,4 @@
-﻿namespace Mastonet
+﻿namespace Pleronet
 {
     public enum StreamingType
     {

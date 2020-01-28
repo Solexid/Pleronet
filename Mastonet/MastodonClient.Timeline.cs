@@ -1,11 +1,11 @@
-﻿using Mastonet.Entities;
+﻿using Pleronet.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Mastonet
+namespace Pleronet
 {
     partial class MastodonClient
     {

@@ -1,9 +1,9 @@
-﻿using Mastonet.Entities;
+﻿using Pleronet.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mastonet
+namespace Pleronet
 {
     public class ServerErrorException : Exception
     {

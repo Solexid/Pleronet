@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Mastonet.Entities
+namespace Pleronet.Entities
 {
     public class Emoji
     {

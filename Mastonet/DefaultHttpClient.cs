@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 
-namespace Mastonet
+namespace Pleronet
 {
     /// <summary>
     /// Singleton-like static class for <see cref="System.Net.Http.HttpClient"/>.

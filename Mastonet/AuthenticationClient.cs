@@ -1,4 +1,4 @@
-﻿using Mastonet.Entities;
+﻿using Pleronet.Entities;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mastonet
+namespace Pleronet
 {
     public class AuthenticationClient : BaseHttpClient, IAuthenticationClient
     {

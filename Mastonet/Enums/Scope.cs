@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mastonet
+namespace Pleronet
 {
     [Flags]
     public enum Scope

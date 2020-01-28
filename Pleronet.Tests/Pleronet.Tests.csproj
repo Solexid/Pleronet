@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Mastonet\Mastonet.csproj" />
+    <ProjectReference Include="..\Pleronet\Pleronet.csproj" />
   </ItemGroup>
 
   <ItemGroup>

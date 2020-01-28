@@ -125,18 +125,18 @@ namespace Mastonet
                         {
                             if (link.Contains("rel=\"next\""))
                             {
-                                result.NextPageMaxId = long.Parse(idFinderRegex.Match(link).Groups[1].Value);
+                                result.NextPageMaxId =idFinderRegex.Match(link).Groups[1].Value;
                             }
 
                             if (link.Contains("rel=\"prev\""))
                             {
                                 if (link.Contains("since_id"))
                                 {
-                                    result.PreviousPageSinceId = long.Parse(idFinderRegex.Match(link).Groups[1].Value);
+                                    result.PreviousPageSinceId = idFinderRegex.Match(link).Groups[1].Value;
                                 }
                                 if (link.Contains("min_id"))
                                 {
-                                    result.PreviousPageMinId = long.Parse(idFinderRegex.Match(link).Groups[1].Value);
+                                    result.PreviousPageMinId = idFinderRegex.Match(link).Groups[1].Value;
                                 }
                             }
                         }

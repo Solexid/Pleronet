@@ -51,7 +51,7 @@ namespace Mastonet.Entities
         /// IDs of the attachments
         /// </summary>
         [JsonProperty("media_ids")]
-        public IEnumerable<long>? MediaIds { get; set; }
+        public IEnumerable<string>? MediaIds { get; set; }
 
         /// <summary>
         /// Whether to mark the attachment as sensitive, or null 

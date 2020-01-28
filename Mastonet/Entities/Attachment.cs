@@ -12,7 +12,7 @@ namespace Mastonet.Entities
         /// ID of the attachment
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// One of: "image", "video", "gifv", "unknown"

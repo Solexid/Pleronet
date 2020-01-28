@@ -11,7 +11,7 @@ namespace Mastonet.Entities
         /// The poll ID
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// The due DateTime

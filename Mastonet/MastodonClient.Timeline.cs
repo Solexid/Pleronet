@@ -16,7 +16,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit">Maximum number of items to get (Default 20)</param>
         /// <returns>Returns an array of Statuses, most recent ones first</returns>
-        public Task<MastodonList<Status>> GetHomeTimeline(long? maxId = null, long? sinceId = null, int? limit = null)
+        public Task<MastodonList<Status>> GetHomeTimeline(string? maxId = null, string? sinceId = null, int? limit = null)
         {
             return GetHomeTimeline(new ArrayOptions() { MaxId = maxId, SinceId = sinceId, Limit = limit });
         }
@@ -43,7 +43,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit">Maximum number of items to get (Default 20)</param>
         /// <returns>Returns array of Conversation</returns>
-        public Task<MastodonList<Conversation>> GetConversations(long? maxId = null, long? sinceId = null, int? limit = null)
+        public Task<MastodonList<Conversation>> GetConversations(string? maxId = null, string? sinceId = null, int? limit = null)
         {
             return GetConversations(new ArrayOptions() { MaxId = maxId, SinceId = sinceId, Limit = limit });
         }
@@ -72,7 +72,7 @@ namespace Mastonet
         /// <param name="local">Only return statuses originating from this instance</param>
         /// <param name="onlyMedia">Only statuses with media attachments</param>
         /// <returns>Returns an array of Statuses, most recent ones first</returns>
-        public Task<MastodonList<Status>> GetPublicTimeline(long? maxId = null, long? sinceId = null, int? limit = null, bool local = false, bool onlyMedia = false)
+        public Task<MastodonList<Status>> GetPublicTimeline(string? maxId = null, string? sinceId = null, int? limit = null, bool local = false, bool onlyMedia = false)
         {
             return GetPublicTimeline(new ArrayOptions() { MaxId = maxId, SinceId = sinceId, Limit = limit }, local, onlyMedia);
         }
@@ -115,7 +115,7 @@ namespace Mastonet
         /// <param name="local">Only return statuses originating from this instance</param>
         /// <param name="onlyMedia">Only statuses with media attachments</param>
         /// <returns>Returns an array of Statuses, most recent ones first</returns>
-        public Task<MastodonList<Status>> GetTagTimeline(string hashtag, long? maxId = null, long? sinceId = null, int? limit = null, bool local = false, bool onlyMedia = false)
+        public Task<MastodonList<Status>> GetTagTimeline(string hashtag, string? maxId = null, string? sinceId = null, int? limit = null, bool local = false, bool onlyMedia = false)
         {
             return GetTagTimeline(hashtag, new ArrayOptions() { MaxId = maxId, SinceId = sinceId, Limit = limit }, local, onlyMedia);
         }
@@ -157,7 +157,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit">Maximum number of items to get (Default 20)</param>
         /// <returns>Returns an array of Statuses, most recent ones first</returns>
-        public Task<MastodonList<Status>> GetListTimeline(long listId, long? maxId = null, long? sinceId = null, int? limit = null)
+        public Task<MastodonList<Status>> GetListTimeline(string listId, string? maxId = null, string? sinceId = null, int? limit = null)
         {
             return GetListTimeline(listId, new ArrayOptions() { MaxId = maxId, SinceId = sinceId, Limit = limit });
         }
@@ -168,7 +168,7 @@ namespace Mastonet
         /// <param name="listId"></param>
         /// <param name="options">Define the first and last items to get</param>
         /// <returns>Returns an array of Statuses, most recent ones first</returns>
-        public Task<MastodonList<Status>> GetListTimeline(long listId, ArrayOptions options)
+        public Task<MastodonList<Status>> GetListTimeline(string listId, ArrayOptions options)
         {
             string url = "/api/v1/timelines/list/" + listId;
 
@@ -236,7 +236,7 @@ namespace Mastonet
             return GetStreaming(StreamingType.Direct, null);
         }
 
-        public TimelineStreaming GetListStreaming(long listId)
+        public TimelineStreaming GetListStreaming(string listId)
         {
             return GetStreaming(StreamingType.List, listId.ToString());
         }

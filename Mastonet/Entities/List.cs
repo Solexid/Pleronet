@@ -11,7 +11,7 @@ namespace Mastonet.Entities
         /// ID of the list
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Title of the list

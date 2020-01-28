@@ -19,7 +19,7 @@ namespace Mastonet
         /// <param name="accountId"></param>
         /// <param name="reblogs">Whether the followed account’s reblogs will show up in the home timeline</param>
         /// <returns>Returns the target Account</returns>
-        public Task<Relationship> Follow(long accountId, bool reblogs = true)
+        public Task<Relationship> Follow(string accountId, bool reblogs = true)
         {
             var data = reblogs ? null : Enumerable.Repeat(new KeyValuePair<string, string>("reblogs", "false"), 1);
             return this.Post<Relationship>($"/api/v1/accounts/{accountId}/follow", data);
@@ -30,7 +30,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns the target Account</returns>
-        public Task<Relationship> Unfollow(long accountId)
+        public Task<Relationship> Unfollow(string accountId)
         {
             return this.Post<Relationship>($"/api/v1/accounts/{accountId}/unfollow");
         }
@@ -55,7 +55,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns the target Account</returns>
-        public Task<Relationship> Block(long accountId)
+        public Task<Relationship> Block(string accountId)
         {
             return Post<Relationship>($"/api/v1/accounts/{accountId}/block");
         }
@@ -65,7 +65,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns the target Account</returns>
-        public Task<Relationship> Unblock(long accountId)
+        public Task<Relationship> Unblock(string accountId)
         {
             return Post<Relationship>($"/api/v1/accounts/{accountId}/unblock");
         }
@@ -77,7 +77,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Accounts blocked by the authenticated user</returns>
-        public Task<MastodonList<Account>> GetBlocks(long? maxId = null, long? sinceId = null, int? limit = null)
+        public Task<MastodonList<Account>> GetBlocks(string? maxId = null, string? sinceId = null, int? limit = null)
         {
             return GetBlocks(new ArrayOptions() { MaxId = maxId, SinceId = sinceId, Limit = limit });
         }
@@ -105,7 +105,7 @@ namespace Mastonet
         /// <param name="accountId"></param>
         /// <param name="notifications">Whether the mute will mute notifications or not</param>
         /// <returns>Returns the target Account</returns>
-        public Task<Relationship> Mute(long accountId, bool notifications = true)
+        public Task<Relationship> Mute(string accountId, bool notifications = true)
         {
             var data = notifications ? null : new[] { new KeyValuePair<string, string>("notifications", "false") };
             return Post<Relationship>($"/api/v1/accounts/{accountId}/mute", data);
@@ -116,7 +116,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns the target Account</returns>
-        public Task<Relationship> Unmute(long accountId)
+        public Task<Relationship> Unmute(string accountId)
         {
             return Post<Relationship>($"/api/v1/accounts/{accountId}/unmute");
         }
@@ -128,7 +128,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Accounts muted by the authenticated user</returns>
-        public Task<MastodonList<Account>> GetMutes(long? maxId = null, long? sinceId = null, int? limit = null)
+        public Task<MastodonList<Account>> GetMutes(string? maxId = null, string? sinceId = null, int? limit = null)
         {
             return GetMutes(new ArrayOptions() { MaxId = maxId, SinceId = sinceId, Limit = limit });
         }
@@ -164,7 +164,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns the updated Relationships with the target Account</returns>
-        public Task<Relationship> Endorse(long accountId)
+        public Task<Relationship> Endorse(string accountId)
         {
             return Post<Relationship>($"/api/v1/accounts/{accountId}/pin");
         }
@@ -174,7 +174,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns the updated Relationships with the target Account</returns>
-        public Task<Relationship> Unendorse(long accountId)
+        public Task<Relationship> Unendorse(string accountId)
         {
             return Post<Relationship>($"/api/v1/accounts/{accountId}/unpin");
         }
@@ -188,7 +188,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of strings</returns>
-        public Task<MastodonList<string>> GetDomainBlocks(long? maxId = null, long? sinceId = null, int? limit = null)
+        public Task<MastodonList<string>> GetDomainBlocks(string? maxId = null, string? sinceId = null, int? limit = null)
         {
             return GetDomainBlocks(new ArrayOptions() { MaxId = maxId, SinceId = sinceId, Limit = limit });
         }

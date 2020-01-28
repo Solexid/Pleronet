@@ -28,7 +28,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns array of List</returns>
-        Task<IEnumerable<List>> GetListsContainingAccount(long accountId);
+        Task<IEnumerable<List>> GetListsContainingAccount(string accountId);
 
         /// <summary>
         /// Accounts that are in a given list.
@@ -38,7 +38,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns array of Account</returns>
-        Task<MastodonList<Account>> GetListAccounts(long listId, long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Account>> GetListAccounts(string listId, string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Accounts that are in a given list.
@@ -46,14 +46,14 @@ namespace Mastonet
         /// <param name="listId"></param>
         /// <param name="options">Define the first and last items to get</param>
         /// <returns>Returns array of Account</returns>
-        Task<MastodonList<Account>> GetListAccounts(long listId, ArrayOptions options);
+        Task<MastodonList<Account>> GetListAccounts(string listId, ArrayOptions options);
 
         /// <summary>
         /// Get a list.
         /// </summary>
         /// <param name="listId"></param>
         /// <returns>Returns List</returns>
-        Task<List> GetList(long listId);
+        Task<List> GetList(string listId);
 
         /// <summary>
         /// Create a new list.
@@ -67,13 +67,13 @@ namespace Mastonet
         /// </summary>
         /// <param name="title">The title of the list</param>
         /// <returns>The list updated</returns>
-        Task<List> UpdateList(long listId, string newTitle);
+        Task<List> UpdateList(string listId, string newTitle);
 
         /// <summary>
         /// Remove a list.
         /// </summary>
         /// <param name="listId"></param>
-        Task DeleteList(long listId);
+        Task DeleteList(string listId);
 
         /// <summary>
         /// Add accounts to a list.
@@ -81,7 +81,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="listId">List ID</param>
         /// <param name="accountIds">Array of account IDs</param>
-        Task AddAccountsToList(long listId, IEnumerable<long> accountIds);
+        Task AddAccountsToList(string listId, IEnumerable<string> accountIds);
 
         /// <summary>
         /// Add accounts to a list.
@@ -89,21 +89,21 @@ namespace Mastonet
         /// </summary>
         /// <param name="listId">List ID</param>
         /// <param name="accounts">Array of Accounts</param>
-        Task AddAccountsToList(long listId, IEnumerable<Account> accounts);
+        Task AddAccountsToList(string listId, IEnumerable<Account> accounts);
 
         /// <summary>
         /// Remove accounts from a list.
         /// </summary>
         /// <param name="listId">List Id</param>
         /// <param name="accountIds">Array of Account IDs</param>
-        Task RemoveAccountsFromList(long listId, IEnumerable<long> accountIds);
+        Task RemoveAccountsFromList(string listId, IEnumerable<string> accountIds);
 
         /// <summary>
         /// Remove accounts from a list.
         /// </summary>
         /// <param name="listId">List Id</param>
         /// <param name="accountIds">Array of Accounts</param>
-        Task RemoveAccountsFromList(long listId, IEnumerable<Account> accounts);
+        Task RemoveAccountsFromList(string listId, IEnumerable<Account> accounts);
 
         /// <summary>
         /// Uploading a media attachment
@@ -141,7 +141,7 @@ namespace Mastonet
         /// <param name="limit">Maximum number of items to get (Default 40, Max 80)</param>
         /// <param name="excludeTypes">Types to exclude</param>
         /// <returns>Returns a list of Notifications for the authenticated user</returns>
-        Task<MastodonList<Notification>> GetNotifications(long? maxId = null, long? sinceId = null, int? limit = null, NotificationType excludeTypes = NotificationType.None);
+        Task<MastodonList<Notification>> GetNotifications(string? maxId = null, string? sinceId = null, int? limit = null, NotificationType excludeTypes = NotificationType.None);
 
         /// <summary>
         /// Fetching a user's notifications
@@ -178,7 +178,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns a list of Reports made by the authenticated user</returns>
-        Task<MastodonList<Report>> GetReports(long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Report>> GetReports(string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Fetching a user's reports
@@ -195,7 +195,7 @@ namespace Mastonet
         /// <param name="comment">A comment to associate with the report</param>
         /// <param name="forward">Whether to forward to the remote admin (in case of a remote account)</param>
         /// <returns>Returns the finished Report</returns>
-        Task<Report> Report(long accountId, IEnumerable<long>? statusIds = null, string? comment = null, bool? forward = null);
+        Task<Report> Report(string accountId, IEnumerable<string>? statusIds = null, string? comment = null, bool? forward = null);
 
         /// <summary>
         /// Searching for content
@@ -289,7 +289,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns an Account</returns>
-        Task<Account> GetAccount(long accountId);
+        Task<Account> GetAccount(string accountId);
 
         /// <summary>
         /// Getting the current user
@@ -325,14 +325,14 @@ namespace Mastonet
         /// </summary>
         /// <param name="id">Account ID</param>
         /// <returns>Returns an array of Relationships of the current user to a given account</returns>
-        Task<IEnumerable<Relationship>> GetAccountRelationships(long id);
+        Task<IEnumerable<Relationship>> GetAccountRelationships(string id);
 
         /// <summary>
         /// Getting an account's relationships
         /// </summary>
         /// <param name="id">Account IDs</param>
         /// <returns>Returns an array of Relationships of the current user to a list of given accounts</returns>
-        Task<IEnumerable<Relationship>> GetAccountRelationships(IEnumerable<long> ids);
+        Task<IEnumerable<Relationship>> GetAccountRelationships(IEnumerable<string> ids);
 
         /// <summary>
         /// Getting an account's followers
@@ -342,7 +342,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Accounts</returns>
-        Task<MastodonList<Account>> GetAccountFollowers(long accountId, long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Account>> GetAccountFollowers(string accountId, string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Getting an account's followers
@@ -350,7 +350,7 @@ namespace Mastonet
         /// <param name="accountId"></param>
         /// <param name="options">Define the first and last items to get</param>
         /// <returns>Returns an array of Accounts</returns>
-        Task<MastodonList<Account>> GetAccountFollowers(long accountId, ArrayOptions options);
+        Task<MastodonList<Account>> GetAccountFollowers(string accountId, ArrayOptions options);
 
         /// <summary>
         /// Getting who account is following
@@ -360,7 +360,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Accounts</returns>
-        Task<MastodonList<Account>> GetAccountFollowing(long accountId, long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Account>> GetAccountFollowing(string accountId, string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Getting who account is following
@@ -368,7 +368,7 @@ namespace Mastonet
         /// <param name="accountId"></param>
         /// <param name="options">Define the first and last items to get</param>
         /// <returns>Returns an array of Accounts</returns>
-        Task<MastodonList<Account>> GetAccountFollowing(long accountId, ArrayOptions options);
+        Task<MastodonList<Account>> GetAccountFollowing(string accountId, ArrayOptions options);
 
         /// <summary>
         /// Getting an account's statuses
@@ -382,7 +382,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Statuses</returns>
-        Task<MastodonList<Status>> GetAccountStatuses(long accountId, long? maxId = null, long? sinceId = null, int? limit = null, bool onlyMedia = false, bool excludeReplies = false, bool pinned = false, bool excludeReblogs = false);
+        Task<MastodonList<Status>> GetAccountStatuses(string accountId, string? maxId = null, string? sinceId = null, int? limit = null, bool onlyMedia = false, bool excludeReplies = false, bool pinned = false, bool excludeReblogs = false);
 
         /// <summary>
         /// Getting an account's statuses
@@ -394,7 +394,7 @@ namespace Mastonet
         /// <param name="excludeReblogs">Skip statuses that are reblogs of other statuses</param>
         /// <param name="options">Define the first and last items to get</param>
         /// <returns>Returns an array of Statuses</returns>
-        Task<MastodonList<Status>> GetAccountStatuses(long accountId, ArrayOptions options, bool onlyMedia = false, bool excludeReplies = false, bool pinned = false, bool excludeReblogs = false);
+        Task<MastodonList<Status>> GetAccountStatuses(string accountId, ArrayOptions options, bool onlyMedia = false, bool excludeReplies = false, bool pinned = false, bool excludeReblogs = false);
 
         /// <summary>
         /// Fetching a list of follow requests
@@ -403,7 +403,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Accounts which have requested to follow the authenticated user</returns>
-        Task<MastodonList<Account>> GetFollowRequests(long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Account>> GetFollowRequests(string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Fetching a list of follow requests
@@ -416,13 +416,13 @@ namespace Mastonet
         /// Authorizing follow requests
         /// </summary>
         /// <param name="accountId">The id of the account to authorize</param>
-        Task AuthorizeRequest(long accountId);
+        Task AuthorizeRequest(string accountId);
 
         /// <summary>
         /// Rejecting follow requests
         /// </summary>
         /// <param name="accountId">The id of the account to reject</param>
-        Task RejectRequest(long accountId);
+        Task RejectRequest(string accountId);
 
         /// <summary>
         /// Listing accounts the user had past positive interactions with, but is not following yet
@@ -434,7 +434,7 @@ namespace Mastonet
         /// Removing account from suggestions
         /// </summary>
         /// <param name="accountId">The account ID to remove</param>
-        Task DeleteFollowSuggestion(long accountId);
+        Task DeleteFollowSuggestion(string accountId);
 
         /// <summary>
         /// Fetching a user's favourites
@@ -443,7 +443,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Statuses favourited by the authenticated user</returns>
-        Task<MastodonList<Status>> GetFavourites(long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Status>> GetFavourites(string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Fetching a user's favourites
@@ -462,14 +462,14 @@ namespace Mastonet
         /// <param name="accountId"></param>
         /// <param name="reblogs">Whether the followed account’s reblogs will show up in the home timeline</param>
         /// <returns>Returns the target Account</returns>
-        Task<Relationship> Follow(long accountId, bool reblogs = true);
+        Task<Relationship> Follow(string accountId, bool reblogs = true);
 
         /// <summary>
         /// Unfollowing an account
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns the target Account</returns>
-        Task<Relationship> Unfollow(long accountId);
+        Task<Relationship> Unfollow(string accountId);
 
         /// <summary>
         /// Following a remote user
@@ -483,14 +483,14 @@ namespace Mastonet
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns the target Account</returns>
-        Task<Relationship> Block(long accountId);
+        Task<Relationship> Block(string accountId);
 
         /// <summary>
         /// Unblocking an account
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns the target Account</returns>
-        Task<Relationship> Unblock(long accountId);
+        Task<Relationship> Unblock(string accountId);
 
         /// <summary>
         /// Fetching a user's blocks
@@ -499,7 +499,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Accounts blocked by the authenticated user</returns>
-        Task<MastodonList<Account>> GetBlocks(long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Account>> GetBlocks(string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Fetching a user's blocks
@@ -514,14 +514,14 @@ namespace Mastonet
         /// <param name="accountId"></param>
         /// <param name="notifications">Whether the mute will mute notifications or not</param>
         /// <returns>Returns the target Account</returns>
-        Task<Relationship> Mute(long accountId, bool notifications = true);
+        Task<Relationship> Mute(string accountId, bool notifications = true);
 
         /// <summary>
         /// Unmuting an account
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns the target Account</returns>
-        Task<Relationship> Unmute(long accountId);
+        Task<Relationship> Unmute(string accountId);
 
         /// <summary>
         /// Fetching a user's mutes
@@ -530,7 +530,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Accounts muted by the authenticated user</returns>
-        Task<MastodonList<Account>> GetMutes(long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Account>> GetMutes(string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Fetching a user's mutes
@@ -546,7 +546,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of strings</returns>
-        Task<MastodonList<string>> GetDomainBlocks(long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<string>> GetDomainBlocks(string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Fetching a user's blocked domains
@@ -578,14 +578,14 @@ namespace Mastonet
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns the updated Relationships with the target Account</returns>
-        Task<Relationship> Endorse(long accountId);
+        Task<Relationship> Endorse(string accountId);
 
         /// <summary>
         /// Undoing endorse of an account
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns the updated Relationships with the target Account</returns>
-        Task<Relationship> Unendorse(long accountId);
+        Task<Relationship> Unendorse(string accountId);
         #endregion
 
         #region MastodonClient.Status
@@ -595,21 +595,21 @@ namespace Mastonet
         /// </summary>
         /// <param name="statusId"></param>
         /// <returns>Returns a Status</returns>
-        Task<Status> GetStatus(long statusId);
+        Task<Status> GetStatus(string statusId);
 
         /// <summary>
         /// Getting status context
         /// </summary>
         /// <param name="statusId"></param>
         /// <returns>Returns a Context</returns>
-        Task<Context> GetStatusContext(long statusId);
+        Task<Context> GetStatusContext(string statusId);
 
         /// <summary>
         /// Getting a card associated with a status
         /// </summary>
         /// <param name="statusId"></param>
         /// <returns>Returns a Card</returns>
-        Task<Card> GetStatusCard(long statusId);
+        Task<Card> GetStatusCard(string statusId);
 
         /// <summary>
         /// Getting who reblogged a status
@@ -619,7 +619,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Accounts</returns>
-        Task<MastodonList<Account>> GetRebloggedBy(long statusId, long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Account>> GetRebloggedBy(string statusId, string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Getting who reblogged a status
@@ -627,7 +627,7 @@ namespace Mastonet
         /// <param name="statusId"></param>
         /// <param name="options">Define the first and last items to get</param>
         /// <returns>Returns an array of Accounts</returns>
-        Task<MastodonList<Account>> GetRebloggedBy(long statusId, ArrayOptions options);
+        Task<MastodonList<Account>> GetRebloggedBy(string statusId, ArrayOptions options);
 
         /// <summary>
         /// Getting who favourited a status
@@ -637,7 +637,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Accounts</returns>
-        Task<MastodonList<Account>> GetFavouritedBy(long statusId, long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Account>> GetFavouritedBy(string statusId, string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Getting who favourited a status
@@ -645,7 +645,7 @@ namespace Mastonet
         /// <param name="statusId"></param>
         /// <param name="options">Define the first and last items to get</param>
         /// <returns>Returns an array of Accounts</returns>
-        Task<MastodonList<Account>> GetFavouritedBy(long statusId, ArrayOptions options);
+        Task<MastodonList<Account>> GetFavouritedBy(string statusId, ArrayOptions options);
 
         /// <summary>
         /// Posting a new status
@@ -660,13 +660,13 @@ namespace Mastonet
         /// <param name="language">Override language code of the toot (ISO 639-2)</param>
         /// <param name="poll">Nested parameters to attach a poll to the status</param>
         /// <returns>Returns Status</returns>
-        Task<Status> PostStatus(string status, Visibility? visibility = null, long? replyStatusId = null, IEnumerable<long>? mediaIds = null, bool sensitive = false, string? spoilerText = null, DateTime? scheduledAt = null, string? language = null, PollParameters? poll = null);
+        Task<Status> PostStatus(string status, Visibility? visibility = null, String? replyStatusId = null, IEnumerable<string>? mediaIds = null, bool sensitive = false, string? spoilerText = null, DateTime? scheduledAt = null, string? language = null, PollParameters? poll = null);
 
         /// <summary>
         /// Deleting a status
         /// </summary>
         /// <param name="statusId"></param>
-        Task DeleteStatus(long statusId);
+        Task DeleteStatus(string statusId);
 
         /// <summary>
         /// Get scheduled statuses.
@@ -679,7 +679,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="scheduledStatusId"></param>
         /// <returns>Returns ScheduledStatus</returns>
-        Task<ScheduledStatus> GetScheduledStatus(long scheduledStatusId);
+        Task<ScheduledStatus> GetScheduledStatus(string scheduledStatusId);
 
         /// <summary>
         /// Update Scheduled status. Only scheduled_at can be changed. To change the content, delete it and post a new status.
@@ -687,69 +687,69 @@ namespace Mastonet
         /// <param name="scheduledStatusId"></param>
         /// <param name="scheduledAt">DateTime to schedule posting of status</param>
         /// <returns>Returns ScheduledStatus</returns>
-        Task<ScheduledStatus> UpdateScheduledStatus(long scheduledStatusId, DateTime? scheduledAt);
+        Task<ScheduledStatus> UpdateScheduledStatus(string scheduledStatusId, DateTime? scheduledAt);
 
         /// <summary>
         /// Remove Scheduled status.
         /// </summary>
         /// <param name="scheduledStatusId"></param>
-        Task DeleteScheduledStatus(long scheduledStatusId);
+        Task DeleteScheduledStatus(string scheduledStatusId);
 
         /// <summary>
         /// Reblogging a status
         /// </summary>
         /// <param name="statusId"></param>
         /// <returns>Returns the target Status</returns>
-        Task<Status> Reblog(long statusId);
+        Task<Status> Reblog(string statusId);
 
         /// <summary>
         /// Unreblogging a status
         /// </summary>
         /// <param name="statusId"></param>
         /// <returns>Returns the target Status</returns>
-        Task<Status> Unreblog(long statusId);
+        Task<Status> Unreblog(string statusId);
 
         /// <summary>
         /// Favouriting a status
         /// </summary>
         /// <param name="statusId"></param>
         /// <returns>Returns the target Status</returns>
-        Task<Status> Favourite(long statusId);
+        Task<Status> Favourite(string statusId);
 
         /// <summary>
         /// Unfavouriting a status
         /// </summary>
         /// <param name="statusId"></param>
         /// <returns>Returns the target Status</returns>
-        Task<Status> Unfavourite(long statusId);
+        Task<Status> Unfavourite(string statusId);
 
         /// <summary>
         /// Muting a conversation of a status
         /// </summary>
         /// <param name="statusId"></param>
         /// <returns>Returns the target Status</returns>
-        Task<Status> MuteConversation(long statusId);
+        Task<Status> MuteConversation(string statusId);
 
         /// <summary>
         /// Unmuting a conversation of a status
         /// </summary>
         /// <param name="statusId"></param>
         /// <returns>Returns the target Status</returns>
-        Task<Status> UnmuteConversation(long statusId);
+        Task<Status> UnmuteConversation(string statusId);
 
         /// <summary>
         /// Pinning a status
         /// </summary>
         /// <param name="statusId"></param>
         /// <returns>Returns the target Status</returns>
-        Task<Status> Pin(long statusId);
+        Task<Status> Pin(string statusId);
 
         /// <summary>
         /// Unpinning a status
         /// </summary>
         /// <param name="statusId"></param>
         /// <returns>Returns the target Status</returns>
-        Task<Status> Unpin(long statusId);
+        Task<Status> Unpin(string statusId);
 
         #endregion
 
@@ -762,7 +762,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Statuses, most recent ones first</returns>
-        Task<MastodonList<Status>> GetHomeTimeline(long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Status>> GetHomeTimeline(string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Retrieving Home timeline
@@ -778,7 +778,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit">Maximum number of items to get (Default 20)</param>
         /// <returns>Returns array of Conversation</returns>
-        Task<MastodonList<Conversation>> GetConversations(long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Conversation>> GetConversations(string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Conversations (direct messages) for an account
@@ -795,7 +795,7 @@ namespace Mastonet
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <param name="local">Only return statuses originating from this instance</param>
         /// <returns>Returns an array of Statuses, most recent ones first</returns>
-        Task<MastodonList<Status>> GetPublicTimeline(long? maxId = null, long? sinceId = null, int? limit = null, bool local = false, bool onlyMedia = false);
+        Task<MastodonList<Status>> GetPublicTimeline(string? maxId = null, string? sinceId = null, int? limit = null, bool local = false, bool onlyMedia = false);
 
         /// <summary>
         /// Retrieving Public timeline
@@ -814,7 +814,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns an array of Statuses, most recent ones first</returns>
-        Task<MastodonList<Status>> GetTagTimeline(string hashtag, long? maxId = null, long? sinceId = null, int? limit = null, bool local = false, bool onlyMedia = false);
+        Task<MastodonList<Status>> GetTagTimeline(string hashtag, string? maxId = null, string? sinceId = null, int? limit = null, bool local = false, bool onlyMedia = false);
 
         /// <summary>
         /// Retrieving Tag timeline
@@ -833,7 +833,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit">Maximum number of items to get (Default 20)</param>
         /// <returns>Returns an array of Statuses, most recent ones first</returns>
-        Task<MastodonList<Status>> GetListTimeline(long listId, long? maxId = null, long? sinceId = null, int? limit = null);
+        Task<MastodonList<Status>> GetListTimeline(string listId, string? maxId = null, string? sinceId = null, int? limit = null);
 
         /// <summary>
         /// Retrieving List timeline
@@ -841,7 +841,7 @@ namespace Mastonet
         /// <param name="listId"></param>
         /// <param name="options">Define the first and last items to get</param>
         /// <returns>Returns an array of Statuses, most recent ones first</returns>
-        Task<MastodonList<Status>> GetListTimeline(long listId, ArrayOptions options);
+        Task<MastodonList<Status>> GetListTimeline(string listId, ArrayOptions options);
 
         TimelineStreaming GetPublicStreaming();
 

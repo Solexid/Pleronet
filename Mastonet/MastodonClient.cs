@@ -58,7 +58,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns>Returns array of List</returns>
-        public Task<IEnumerable<List>> GetListsContainingAccount(long accountId)
+        public Task<IEnumerable<List>> GetListsContainingAccount(string accountId)
         {
             return this.Get<IEnumerable<List>>($"/api/v1/accounts/{accountId}/lists");
         }
@@ -71,7 +71,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns array of Account</returns>
-        public Task<MastodonList<Account>> GetListAccounts(long listId, long? maxId = null, long? sinceId = null, int? limit = null)
+        public Task<MastodonList<Account>> GetListAccounts(string listId, string? maxId = null, string? sinceId = null, int? limit = null)
         {
             return GetListAccounts(listId, new ArrayOptions() { MaxId = maxId, SinceId = sinceId, Limit = limit });
         }
@@ -82,7 +82,7 @@ namespace Mastonet
         /// <param name="listId"></param>
         /// <param name="options">Define the first and last items to get</param>
         /// <returns>Returns array of Account</returns>
-        public Task<MastodonList<Account>> GetListAccounts(long listId, ArrayOptions options)
+        public Task<MastodonList<Account>> GetListAccounts(string listId, ArrayOptions options)
         {
             var url = $"/api/v1/lists/{listId}/accounts";
             if (options != null)
@@ -97,7 +97,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="listId"></param>
         /// <returns>Returns List</returns>
-        public Task<List> GetList(long listId)
+        public Task<List> GetList(string listId)
         {
             return this.Get<List>("/api/v1/lists/" + listId);
         }
@@ -126,7 +126,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="title">The title of the list</param>
         /// <returns>The list updated</returns>
-        public Task<List> UpdateList(long listId, string newTitle)
+        public Task<List> UpdateList(string listId, string newTitle)
         {
             if (string.IsNullOrEmpty(newTitle))
             {
@@ -144,7 +144,7 @@ namespace Mastonet
         /// Remove a list.
         /// </summary>
         /// <param name="listId"></param>
-        public Task DeleteList(long listId)
+        public Task DeleteList(string listId)
         {
             return this.Delete("/api/v1/lists/" + listId);
         }
@@ -155,7 +155,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="listId">List ID</param>
         /// <param name="accountIds">Array of account IDs</param>
-        public Task AddAccountsToList(long listId, IEnumerable<long> accountIds)
+        public Task AddAccountsToList(string listId, IEnumerable<string> accountIds)
         {
             if (accountIds == null || !accountIds.Any())
             {
@@ -173,7 +173,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="listId">List ID</param>
         /// <param name="accounts">Array of Accounts</param>
-        public Task AddAccountsToList(long listId, IEnumerable<Account> accounts)
+        public Task AddAccountsToList(string listId, IEnumerable<Account> accounts)
         {
             return AddAccountsToList(listId, accounts.Select(account => account.Id));
         }
@@ -183,14 +183,14 @@ namespace Mastonet
         /// </summary>
         /// <param name="listId">List Id</param>
         /// <param name="accountIds">Array of Account IDs</param>
-        public Task RemoveAccountsFromList(long listId, IEnumerable<long> accountIds)
+        public Task RemoveAccountsFromList(string listId, IEnumerable<string> accountIds)
         {
             if (accountIds == null || !accountIds.Any())
             {
                 throw new ArgumentException("Accounts are required", nameof(accountIds));
             }
 
-            var data = accountIds.Select(id => new KeyValuePair<string, string>("account_ids[]", id.ToString()));
+            var data = accountIds.Select(id => new KeyValuePair<string, string>("account_ids[]", id));
 
             return this.Delete($"/api/v1/lists/{listId}/accounts", data);
         }
@@ -200,7 +200,7 @@ namespace Mastonet
         /// </summary>
         /// <param name="listId">List Id</param>
         /// <param name="accountIds">Array of Accounts</param>
-        public Task RemoveAccountsFromList(long listId, IEnumerable<Account> accounts)
+        public Task RemoveAccountsFromList(string listId, IEnumerable<Account> accounts)
         {
             return RemoveAccountsFromList(listId, accounts.Select(account => account.Id));
         }
@@ -291,7 +291,7 @@ namespace Mastonet
         /// <param name="limit">Maximum number of items to get (Default 40, Max 80)</param>
         /// <param name="excludeTypes">Types to exclude</param>
         /// <returns>Returns a list of Notifications for the authenticated user</returns>
-        public Task<MastodonList<Notification>> GetNotifications(long? maxId = null, long? sinceId = null, int? limit = null, NotificationType excludeTypes = NotificationType.None)
+        public Task<MastodonList<Notification>> GetNotifications(string? maxId = null, string? sinceId = null, int? limit = null, NotificationType excludeTypes = NotificationType.None)
         {
             return GetNotifications(new ArrayOptions() { MaxId = maxId, SinceId = sinceId, Limit = limit }, excludeTypes);
         }
@@ -374,7 +374,7 @@ namespace Mastonet
         /// <param name="sinceId">Get items with ID greater than this value</param>
         /// <param name="limit ">Maximum number of items to get (Default 40, Max 80)</param>
         /// <returns>Returns a list of Reports made by the authenticated user</returns>
-        public Task<MastodonList<Report>> GetReports(long? maxId = null, long? sinceId = null, int? limit = null)
+        public Task<MastodonList<Report>> GetReports(string? maxId = null, string? sinceId = null, int? limit = null)
         {
             return GetReports(new ArrayOptions() { MaxId = maxId, SinceId = sinceId, Limit = limit });
         }
@@ -402,12 +402,12 @@ namespace Mastonet
         /// <param name="comment">A comment to associate with the report</param>
         /// <param name="forward">Whether to forward to the remote admin (in case of a remote account)</param>
         /// <returns>Returns the finished Report</returns>
-        public Task<Report> Report(long accountId, IEnumerable<long>? statusIds = null, string? comment = null, bool? forward = null)
+        public Task<Report> Report(string accountId, IEnumerable<string>? statusIds = null, string? comment = null, bool? forward = null)
         {
             var data = new List<KeyValuePair<string, string>>() {
                 new KeyValuePair<string, string>("account_id", accountId.ToString()),
             };
-            foreach (var statusId in statusIds ?? Enumerable.Empty<long>())
+            foreach (var statusId in statusIds ?? Enumerable.Empty<string>())
             {
                 data.Add(new KeyValuePair<string, string>("status_ids[]", statusId.ToString()));
             }
@@ -503,7 +503,7 @@ namespace Mastonet
         }
 
         [Obsolete("maxId ans sinceId are not used for account search. Use SearchAccounts(string q, int? limit) instead")]
-        public Task<List<Account>> SearchAccounts(string q, long? maxId, long? sinceId, int? limit = null)
+        public Task<List<Account>> SearchAccounts(string q, string? maxId, string? sinceId, int? limit = null)
         {
             return SearchAccounts(q, limit);
         }

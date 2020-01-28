@@ -11,7 +11,7 @@ namespace Mastonet.Entities
         /// Target account id
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Whether the user is currently following the account

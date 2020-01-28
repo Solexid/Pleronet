@@ -82,10 +82,17 @@ namespace Mastonet
                     var messageStr = Encoding.UTF8.GetString(ms.ToArray());
 
                     var message = JsonConvert.DeserializeObject<Dictionary<string, string>>(messageStr);
-                    var eventName = message["event"];
-                    var data = message["payload"];
-                    SendEvent(eventName, data);
+                    if (message != null)
+                    {
+                        var eventName = message["event"];
+                        var data = message["payload"];
 
+                        SendEvent(eventName, data);
+                    }
+                    else {
+                      //SendEvent("", "");
+
+                    }
                     ms.Dispose();
                     ms = new MemoryStream();
                 }

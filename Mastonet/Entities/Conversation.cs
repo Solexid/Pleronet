@@ -12,7 +12,7 @@ namespace Mastonet.Entities
         /// The conversation ID
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Accounts in the conversation

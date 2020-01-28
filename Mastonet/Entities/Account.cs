@@ -11,7 +11,7 @@ namespace Mastonet.Entities
         /// The ID of the account
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// The username of the account

@@ -11,7 +11,7 @@ namespace Mastonet.Entities
         /// Account ID
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// URL of user's profile (can be remote)

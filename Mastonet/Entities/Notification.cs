@@ -11,7 +11,7 @@ namespace Mastonet.Entities
         /// The notification ID
         /// </summary>
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// One of: "mention", "reblog", "favourite", "follow"

@@ -27,12 +27,12 @@ namespace Mastonet
 
     public class StreamDeleteEventArgs : EventArgs
     {
-        public StreamDeleteEventArgs(long statusId)
+        public StreamDeleteEventArgs(string statusId)
         {
-            StatusId = statusId;
+            statusId = statusId;
         }
 
-        public long StatusId { get; set; }
+        public string statusId { get; set; }
     }
 
     public class StreamFiltersChangedEventArgs : EventArgs

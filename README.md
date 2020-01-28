@@ -1,6 +1,6 @@
 # Masto.NET - Pleroma Edition
 
-
+![.NET Core](https://github.com/Solexid/Pleronet/workflows/.NET%20Core/badge.svg)
 
 Masto.NET is a .net standard library for Mastodon written in C#.
 

@@ -30,7 +30,7 @@ namespace Pleronet.Entities
         /// Pleroma object
         /// </summary>
         [JsonProperty("pleroma")]
-        public PleromaStatus pleroma { get; set; } = new PleromaStatus();
+        public PleromaStatus Pleroma { get; set; } = new PleromaStatus();
 
 
         /// <summary>

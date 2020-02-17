@@ -158,6 +158,17 @@ namespace Pleronet
         /// <returns>Returns the Notification</returns>
         Task<Notification> GetNotification(string notificationId);
 
+
+
+
+        /// <summary>
+        /// Set notify status to READED
+        /// </summary>
+        /// <param name="notificationId"></param>
+        /// <returns>Returns the Notifications</returns>
+        public Task<MastodonList<Notification>> ReadNotification(string notificationId);
+
+
         /// <summary>
         /// Deletes all notifications from the Mastodon server for the authenticated user
         /// </summary>

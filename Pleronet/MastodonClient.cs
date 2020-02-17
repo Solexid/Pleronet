@@ -343,6 +343,19 @@ namespace Pleronet
             return Get<Notification>($"/api/v1/notifications/{notificationId}");
         }
 
+
+        /// <summary>
+        /// Set notify status to READED
+        /// </summary>
+        /// <param name="notificationId"></param>
+        /// <returns>Returns the Notifications</returns>
+        public Task<MastodonList<Notification>> ReadNotification(string notificationId)
+        {
+            return Post<MastodonList<Notification>>($"/api/qvitter/statuses/notifications/read.json",new List<KeyValuePair<string,string>>{ new KeyValuePair<string,string>("latest_id",notificationId)  });
+        }
+
+
+
         /// <summary>
         /// Deletes all notifications from the Mastodon server for the authenticated user
         /// </summary>

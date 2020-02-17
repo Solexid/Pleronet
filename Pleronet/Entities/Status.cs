@@ -27,6 +27,13 @@ namespace Pleronet.Entities
         public string? Url { get; set; }
 
         /// <summary>
+        /// Pleroma object
+        /// </summary>
+        [JsonProperty("pleroma")]
+        public PleromaStatus pleroma { get; set; } = new PleromaStatus();
+
+
+        /// <summary>
         /// The Account which posted the status
         /// </summary>
         [JsonProperty("account")]
@@ -170,4 +177,65 @@ namespace Pleronet.Entities
         [JsonProperty("pinned")]
         public bool? Pinned { get; set; }
     }
+    public class PleromaStatus
+    {
+
+
+
+
+        /// <summary>
+        /// True if the post was made on the local instance
+        /// </summary>
+        [JsonProperty("local")]
+        public bool Local { get; set; }
+
+        /// <summary>
+        /// ID of the AP context the status is associated with (if any)
+        /// </summary>
+        [JsonProperty("conversation_id")]
+        public string ConversationId { get; set; } = string.Empty;
+
+        /// <summary>
+        /// ID of the Mastodon direct message conversation the status is associated with (if any)
+        /// </summary>
+        [JsonProperty("direct_conversation_id")]
+        public string DirectConversationId { get; set; } = string.Empty;
+
+        /// <summary>
+        /// True if the thread the post belongs to is muted
+        /// </summary>
+        [JsonProperty("thread_muted")]
+        public bool ThreadMuted { get; set; }
+
+        /// <summary>
+        /// List of emoji reactions (if any)
+        /// </summary>
+        [JsonProperty("emoji_reactions")]
+        public IEnumerable<PleromaEmojiReactions> EmojiReactions { get; set; } = Enumerable.Empty<PleromaEmojiReactions>();
+
+
+
+    }
+    public class PleromaEmojiReactions
+    {
+        /// <summary>
+        /// Emoji
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        /// <summary>
+        /// Count of reactions
+        /// </summary>
+        [JsonProperty("count")]
+        public int Count { get; set; }
+        /// <summary>
+        /// Reaction by you?
+        /// </summary>
+        [JsonProperty("me")]
+        public bool Me { get; set; }
+    }
+
+
+
+
 }

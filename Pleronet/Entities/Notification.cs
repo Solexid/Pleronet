@@ -25,6 +25,16 @@ namespace Pleronet.Entities
         [JsonProperty("created_at")]
         public DateTime CreatedAt { get; set; }
 
+
+
+        /// <summary>
+        /// Pleroma object
+        /// </summary>
+        [JsonProperty("pleroma")]
+        public PleromaNotification pleroma { get; set; } = new PleromaNotification();
+
+
+
         /// <summary>
         /// The Account sending the notification to the user
         /// </summary>
@@ -37,4 +47,24 @@ namespace Pleronet.Entities
         [JsonProperty("status")]
         public Status? Status { get; set; }
     }
+    public class PleromaNotification
+    {
+
+
+
+
+        /// <summary>
+        /// Seen notification status
+        /// </summary>
+        [JsonProperty("is_seen")]
+        public bool IsSeen { get; set; }
+
+
+
+
+
+    }
+
+
+
 }
